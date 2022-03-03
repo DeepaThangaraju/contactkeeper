@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { contactList } from "../../action/contactAction";
 import { Loading } from "../Loading";
 import { Error } from "../error";
@@ -18,7 +17,7 @@ export default function Contact({ history }) {
   const { loading, error, contacts } = getContact;
 
   const deleteContact = useSelector((state) => state.contactDelete);
-  const { loading: deleteLoading, error: deleteErroe, success } = deleteContact;
+  const {  success } = deleteContact;
 
   const user = useSelector((state) => state.userLoginReducer);
   const { userInfo } = user;

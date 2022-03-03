@@ -74,7 +74,7 @@ router.put("/:id",authenticate,async (req,res)=>{
 
         //make sure user owns contact
         if(contact.user.toString() !== req.user.id){
-            return res.status(401).json({msg:"not authorized iser"})
+            return res.status(401).json({msg:"not authorized user"})
         }
       
         contact=await contactModel.findByIdAndUpdate(req.params.id,
@@ -114,6 +114,22 @@ router.delete("/:id",authenticate,async(req,res)=>{
     }catch(err){
         console.error(err.message)
    res.status(500).send("Server error")
+    }
+})
+
+router.get("/:id",async(req,res)=>{
+    const contact=await contactModel.findById(req.params.id)
+    if(contact){
+      res.json({
+        _id:contact._id,
+        name:contact.name,
+        email:contact.email,
+        phone:contact.phone,
+        type:contact.type
+      })
+    }else{
+      res.status(401)
+      throw new Error("Invalid credentials");
     }
 })
 export const contactRoute=router;

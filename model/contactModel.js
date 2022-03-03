@@ -25,6 +25,6 @@ const contactSchema=mongoose.Schema({
         type:Date,
         default:Date.now
     }
-})
+},)
 
 export const contactModel=mongoose.model('contact',contactSchema)

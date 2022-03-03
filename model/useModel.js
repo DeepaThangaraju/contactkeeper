@@ -24,5 +24,9 @@ const userSchema=mongoose.Schema({
     }
 })
 
+userSchema.methods.matchPassword = async function(enteredPassword){
+    return await bcrypt.compare(enteredPassword,this.password)
+  }
+
 
 export const userModel=mongoose.model('users',userSchema)

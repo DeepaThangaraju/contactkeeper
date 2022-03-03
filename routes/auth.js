@@ -57,21 +57,21 @@ const generateToken=(id)=>{
 //logged in
 //access private
 router.get("/",authenticate,async (req,res)=>{
-    res.send(req.user)
-//    try{
-//       const user={
-//         id:req.user._id,
-//         name:req.user.name,
-//         email:req.user.email
+    
+   try{
+      const user={
+        id:req.user._id,
+        name:req.user.name,
+        email:req.user.email
 
-//     }
-//   res.status(200).json(
-//       user
-//   )
-//    }catch(err){
-//       console.error(err.message)
-//       res.status(500).send('Server error')
-//    }
+    }
+  res.status(200).json(
+      user
+  )
+   }catch(err){
+      console.error(err.message)
+      res.status(500).send('Server error')
+   }
 })
 
 export const authRoute=router;
